@@ -25,9 +25,9 @@ def runSA_JP():
     td.out_port()
     
     #安汶
-    search_port('安汶',56)
-    trading()
-    out_port()
+    td.search_port('安汶',56)
+    td.trading()
+    td.out_port()
     
     td.run_trading(613,778,22)   #帝利
     td.run_trading(141,377,30)   #泗水
@@ -40,9 +40,9 @@ def runSA_JP():
     td.out_port()
     
     #長崎
-    search_port('長崎',55)
-    trading()
-    out_port()
+    td.search_port('長崎',55)
+    td.trading()
+    td.out_port()
     
     td.run_trading(1131,391,30)  #京都
     td.run_trading(1005,75,40,1) #札幌
@@ -90,9 +90,9 @@ def runEA():
     td.run_tradingItems(657,57,30,[7],2)      #阿爾金
     
     #伊斯坦布爾
-    search_port('伊斯坦布爾',85)
-    trading()
-    out_port()
+    td.search_port('伊斯坦布爾',85)
+    td.trading()
+    td.out_port()
 
     #基輔
     td.search_port('基輔',35)
