@@ -3,8 +3,8 @@ import pyautogui as pag
 import imp
 
 import trade_def as td
-#imp.reload(trade_def)
 
+#總路線耗時約 44mins 利潤 1300w
 #貿易路線(東南亞+日本線(天津衛出發))
 def runSA_JP():
     time_start = time.time() #開始計時
@@ -33,8 +33,7 @@ def runSA_JP():
     #汶萊
     td.next_port(1301,81)
     td.navigation(28)
-    td.selfGoods()
-    td.out_port()
+    td.run_st(1)
     
     #長崎
     td.search_port('長崎',55)
@@ -81,7 +80,7 @@ def runEA():
     td.run_tradingItems(120,710,35,[2,5])     #開普敦
     td.run_tradingItems(659,53,28,[6],2)      #卡里比布
     td.run_tradingItems(788,57,25,[3],1)      #本格拉
-    td.run_tradingItems(517,48,34,[4],2)      #聖多美
+    td.run_tradingItems(517,48,37,[4],2)      #聖多美
     td.run_tradingItems(820,229,20,[1])       #貝南
     td.run_tradingItems(603,381,17,[2,6])     #聖喬治
     td.run_tradingItems(74,425,32,[4,3])      #獅子山
@@ -96,12 +95,14 @@ def runEA():
     td.run_st(1)
 
     #貝魯特
-    td.search_port('貝魯特',10)
-    td.flag() #海盜旗使用
-    time.sleep(30)
+    td.search_port('貝魯特',45)
     td.run_st(1)
-
-    td.run_trading(771,541,25)    #雅法    
+    
+    #雅法
+    td.search_port('雅法',1)
+    td.flag(23) #海盜旗使用
+    td.run_st(0)
+    
     td.run_trading(457,621,20)    #亞歷山大
     td.run_trading(429,56,40,3)   #威尼斯
     td.run_trading(885,791,32)    #那不勒斯    
@@ -118,8 +119,8 @@ def runEA():
     td.search_port('波爾多',36)
     td.run_st(0)
     
-    #賽維利亞
-    td.search_port('賽維利亞',33)
+    #塞維利亞
+    td.search_port('塞維利亞',33)
     td.run_st(0)
 
     #雅典
@@ -127,15 +128,27 @@ def runEA():
     td.run_st(1,1)
 
     #卡利卡特
-    td.search_port('卡利卡特',1)
-    td.flag(197) #海盜旗使用
+    td.search_port('卡利卡特',194)    
     td.buyGood([5,2])    
     td.out_port()
 
     #返回天津衛
-    td.search_port('天津衛',118)
+    td.search_port('天津衛',1)
+    td.flag(117) #海盜旗使用
     td.selfGoods()
     
     time_end = time.time()          #結束計時
     time_c= time_end - time_start   #執行所花時間
     print('歐非線貿易時間:{:.1f}'.format(time_c), 's')
+    
+#自動貿易(最後一港脫離卡死 time:760s)
+def AT():
+    td.autoTrading()
+    time.sleep(765)
+    
+    td.click_xy(1533,466,3)
+    td.click_xy(1349,789,2)
+    td.click_xy(1483,154,2)
+    td.press_sleep("m",3)
+    td.click_xy(1373,823,10)
+    td.selfGoods()

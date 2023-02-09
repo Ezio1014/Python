@@ -8,24 +8,23 @@ def press_sleep(key,t):
     time.sleep(t)
 
 #點擊座標組合鍵
-def click_xy(x,y):
+def click_xy(x,y,t):
     pag.moveTo(x,y)
     time.sleep(0.2)
     pag.click()
+    time.sleep(t)
 
 #購買指定商品 buy = [itemDict指定商品]
-itemDict = {1:[238,217],2:[521,210],3:[246,357],4:[508,361], 5:[246,504],6:[542,504],7:[240,646],8:[527,646]}
 def buyGood(buy):
+    itemDict = {1:[238,217],2:[521,210],3:[246,357],4:[508,361], 5:[246,504],6:[542,504],7:[240,646],8:[527,646]}
     press_sleep("t",2)
     g = 0
     for i in buy:
-        click_xy(itemDict[i][0],itemDict[i][1])
-        time.sleep(0.5)
+        click_xy(itemDict[i][0],itemDict[i][1],0.5)
         if g == 0:
             press_sleep("num3",1)
         g = 1
-        click_xy(1157,244)
-        time.sleep(0.8)
+        click_xy(1157,244,0.8)
     pag.press("num7")
 
 #交易介面
@@ -61,21 +60,18 @@ def zoomOutMap(t):
 #點擊下一個港口+合併縮小地圖
 def next_port(x,y,zoom = None):
     if zoom == None:        
-        click_xy(x,y)
+        click_xy(x,y,0)
     else:
         zoomOutMap(zoom)
-        click_xy(x,y)
+        click_xy(x,y,0)
 
 #搜尋港口+導航至下一個港口
 def search_port(p,t):
-    click_xy(490,110)
-    time.sleep(1)    
+    click_xy(490,110,1)
     keyboard.write(p)
     time.sleep(1)
-    click_xy(650,110)
-    time.sleep(1)
-    click_xy(650,110)
-    time.sleep(2.5)
+    click_xy(650,110,1)
+    click_xy(650,110,2)
     next_port(793,473)
     navigation(t)
 
@@ -90,8 +86,7 @@ def selfGoods():
 #使用海盜旗
 def flag(t):
     time.sleep(6)
-    click_xy(933,840)
-    time.sleep(t)
+    click_xy(933,840,t)
 
 #買賣合一
 def run_st(s,t = None):
@@ -110,15 +105,20 @@ def run_trading(x,y,t,zoom = None):
 def run_tradingItems(x,y,t,buy,zoom = None):
     next_port(x,y,zoom)
     navigation(t)    
-    buyGood(buy)    
+    buyGood(buy)
     out_port()
 
 #自動貿易(遊戲內建功能(18mins))
 def autoTrading():
-    time.sleep(4)
-    press_sleep("m",2)
-    click_xy(1533,460)
-    time.sleep(2)
-    click_xy(1340,676)
-    time.sleep(2)
-    click_xy(1281,796)
+    time.sleep(4)    
+    click_xy(1533,460,2)    
+    click_xy(1340,676,2)    
+    click_xy(1281,796,0)
+    
+#貿易卷使用
+def tradebook():    
+    time.sleep(3)
+    td.press_sleep("t",2)
+    td.click_xy(1159,174,2)
+    td.click_xy(1159,289,2)
+    td.press_sleep("num7",2)
