@@ -30,10 +30,11 @@ def buyGood(buy):
 #交易介面
 def trading(x = None):
     time.sleep(1.5)
-    press_sleep("t",2)
-    press_sleep("num1",6)
+    press_sleep("t",2)    
     if x == 1:
         press_sleep("num4",6)
+    else:
+        press_sleep("num1",6)
     pag.press("num7")
 
 #出港介面
@@ -51,11 +52,11 @@ def navigation(t):
 
 #縮小地圖
 def zoomOutMap(t):
-    time.sleep(3)
+    time.sleep(2.5)
     for i in range(t):
         time.sleep(1.1)
         pag.press("num9")
-    time.sleep(1.8)
+    time.sleep(1.5)
 
 #點擊下一個港口+合併縮小地圖
 def next_port(x,y,zoom = None):
@@ -117,8 +118,8 @@ def autoTrading():
     
 #貿易卷使用
 def tradebook():    
-    time.sleep(3)
-    td.press_sleep("t",2)
-    td.click_xy(1159,174,2)
-    td.click_xy(1159,289,2)
-    td.press_sleep("num7",2)
+    time.sleep(2.5)
+    press_sleep("t",2)
+    click_xy(1159,174,2)
+    click_xy(1159,289,2)
+    press_sleep("num7",2)
