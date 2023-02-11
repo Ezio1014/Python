@@ -4,8 +4,8 @@ import imp
 
 import trade_def as td
 
-#總路線耗時約 58mins 利潤 1300w
-#貿易路線1(東南亞+日本線(天津衛出發(758.5 s)))
+
+#貿易路線1(東南亞+日本線(天津衛出發))
 def runSA_JP():
     time_start = time.time() #開始計時
     
@@ -55,7 +55,7 @@ def runSA_JP():
     time_c= time_end - time_start   #執行所花時間
     print('東南亞+日本線貿易時間:{:.1f}'.format(time_c), 's')
     
-#貿易路線2(歐非線(天津衛出發)(1991.4 s))
+#貿易路線2(歐非線(天津衛出發))
 def runEA():
     
     time_start = time.time() #開始計時
@@ -83,12 +83,13 @@ def runEA():
     td.run_tradingItems(517,48,37,[4],2)      #聖多美
     td.run_tradingItems(820,229,20,[1])       #貝南
     td.run_tradingItems(603,381,17,[2,6])     #聖喬治
-    td.run_tradingItems(74,425,32,[4])      #獅子山
+    td.run_tradingItems(74,425,34,[4])      #獅子山
     td.run_tradingItems(657,57,30,[7],2)      #阿爾金
     
     #伊斯坦布爾
     td.search_port('伊斯坦布爾',85)
-    td.run_st(0)
+    td.buyGood([6])
+    td.out_port()
 
     #基輔
     td.search_port('基輔',35)
@@ -99,8 +100,8 @@ def runEA():
     td.run_st(1)
     
     #雅法
-    td.search_port('雅法',10)
-    td.flag(15) #海盜旗使用
+    td.search_port('雅法',5)
+    td.flag(20) #海盜旗使用
     td.run_st(0)
     
     #亞歷山大
@@ -120,17 +121,26 @@ def runEA():
 
     #漢堡
     td.search_port('漢堡',36)
-    td.run_st(1)    
+    td.run_st(1)
     
+    #波爾多
     td.search_port('波爾多',36)
     td.run_st(0)
     
     #塞維利亞
     td.search_port('塞維利亞',33)
     td.run_st(0)
-
+    
+    #瓦倫西亞
+    td.search_port('瓦倫西亞',25)
+    td.run_st(1)
+    
+    #馬賽
+    td.search_port('馬賽',21)
+    td.run_st(0)
+    
     #雅典
-    td.search_port('雅典',50)
+    td.search_port('雅典',39)
     td.run_st(1,1)
 
     #卡利卡特
@@ -139,8 +149,8 @@ def runEA():
     td.out_port()
 
     #返回天津衛
-    td.search_port('天津衛',2)
-    td.flag(116) #海盜旗使用
+    td.search_port('天津衛',4)
+    td.flag(112) #海盜旗使用
     td.selfGoods()
     
     time_end = time.time()          #結束計時
@@ -150,7 +160,7 @@ def runEA():
 #自動貿易(最後一港脫離卡死 time:760s)
 def AT():
     td.autoTrading()
-    time.sleep(760)
+    time.sleep(758)
     
     #避免該死的漂流瓶...
     td.click_xy(1077,217,1)
@@ -159,6 +169,6 @@ def AT():
     td.click_xy(1533,466,3)
     td.click_xy(1349,789,2)
     td.click_xy(1483,154,2)
-    td.press_sleep("m",3)
+    td.press_sleep("m",2.5)
     td.click_xy(1373,823,10)
     td.selfGoods()

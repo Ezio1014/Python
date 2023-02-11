@@ -1,6 +1,9 @@
 import time
 import pyautogui as pag
 import keyboard
+import numpy as np
+import cv2
+import os
 
 #pyautogui.press+sleep組合鍵
 def press_sleep(key,t):
@@ -39,7 +42,7 @@ def trading(x = None):
 
 #出港介面
 def out_port():
-    time.sleep(0.5)
+    time.sleep(0.7)
     press_sleep("m",1.5)
     press_sleep("num2",4)
 
@@ -123,3 +126,21 @@ def tradebook():
     click_xy(1159,174,2)
     click_xy(1159,289,2)
     press_sleep("num7",2)
+    
+#購買黑市商人商品
+def black_market(p = None,t = None):
+    if p != None:
+        search_port(p,t)
+        
+    img_list = os.listdir("./img") #遍歷資料夾內檔案
+    time.sleep(1)
+    press_sleep("num0",5)
+    for i in img_list:
+        img = pag.locateOnScreen('./img/{}'.format(i),confidence = 0.9)
+        if img:
+            x,y = pag.center(img)
+            click_xy(x,y,1)
+        click_xy(947,714,1)
+        press_sleep('num8',1)
+    press_sleep('num7',1.5)
+    press_sleep('num2',1.5)
