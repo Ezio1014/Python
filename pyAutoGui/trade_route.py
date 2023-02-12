@@ -49,17 +49,14 @@ def runSA_JP():
     #返回天津衛
     td.next_port(388,462)
     td.navigation(21)
-    td.selfGoods()    
+    td.selfGoods()
     
-    time_end = time.time()          #結束計時
-    time_c= time_end - time_start   #執行所花時間
-    print('東南亞+日本線貿易時間:{:.1f}'.format(time_c), 's')
+    time_end = time.time() - time_start   #執行所花時間
+    print('東南亞+日本線貿易時間:{:.1f}'.format(time_end), 's')
     
 #貿易路線2(歐非線(天津衛出發))
-def runEA():
-    
-    time_start = time.time() #開始計時
-    time.sleep(4)
+def runEA():    
+    time_start = time.time() #開始計時    
     td.out_port()
 
     td.run_tradingItems(896,889,32,[3,1,2,4,6]) #應天府
@@ -153,14 +150,13 @@ def runEA():
     td.flag(112) #海盜旗使用
     td.selfGoods()
     
-    time_end = time.time()          #結束計時
-    time_c= time_end - time_start   #執行所花時間
-    print('歐非線貿易時間:{:.1f}'.format(time_c), 's')
+    time_end = time.time() - time_start   #執行所花時間
+    print('歐非線貿易時間:{:.1f}'.format(time_end), 's')
     
 #自動貿易(最後一港脫離卡死 time:760s)
 def AT():
     td.autoTrading()
-    time.sleep(758)
+    time.sleep(757)
     
     #避免該死的漂流瓶...
     td.click_xy(1077,217,1)
@@ -170,5 +166,5 @@ def AT():
     td.click_xy(1349,789,2)
     td.click_xy(1483,154,2)
     td.press_sleep("m",2.5)
-    td.click_xy(1373,823,10)
+    td.click_xy(1373,823,8)
     td.selfGoods()

@@ -129,18 +129,19 @@ def tradebook():
     
 #購買黑市商人商品
 def black_market(p = None,t = None):
+    img_list = os.listdir("./img") #遍歷資料夾內檔案
+    time.sleep(1)
     if p != None:
         search_port(p,t)
-        
-    img_list = os.listdir("./img") #遍歷資料夾內檔案
+    
     time.sleep(1)
     press_sleep("num0",5)
     for i in img_list:
         img = pag.locateOnScreen('./img/{}'.format(i),confidence = 0.9)
         if img:
             x,y = pag.center(img)
-            click_xy(x,y,1)
-        click_xy(947,714,1)
+            click_xy(x,y,0.8)
+        click_xy(947,714,0.8)
         press_sleep('num8',1)
-    press_sleep('num7',1.5)
+    press_sleep('num7',1)
     press_sleep('num2',1.5)
