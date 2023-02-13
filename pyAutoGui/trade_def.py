@@ -127,21 +127,32 @@ def tradebook():
     click_xy(1159,289,2)
     press_sleep("num7",2)
     
-#購買黑市商人商品
+#辨識+購買黑市商人商品
 def black_market(p = None,t = None):
     img_list = os.listdir("./img") #遍歷資料夾內檔案
+    goodItems = {0:[75, 165], 1:[365,165], 2:[75,275], 3:[365,275], 4:[75,385]} #totalHeight:475
     time.sleep(1)
     if p != None:
         search_port(p,t)
     
     time.sleep(1)
-    press_sleep("num0",5)
+    press_sleep("num0",3)
     for i in img_list:
-        img = pag.locateOnScreen('./img/{}'.format(i),confidence = 0.9)
-        if img:
-            x,y = pag.center(img)
-            click_xy(x,y,0.8)
-        click_xy(947,714,0.8)
-        press_sleep('num8',1)
+        if i == 'ghostFlag.png':
+            for j in goodItems:
+                img = pag.locateOnScreen('./img/ghostFlag.png', confidence = 0.9\
+                                         , region=(goodItems[j][0], goodItems[j][1], 280, 95))
+                if img:
+                    x,y = pag.center(img)
+                    click_xy(x,y,0.8)
+                    click_xy(947,714,0.8)  
+                    press_sleep('num8',1)
+        else:
+            img = pag.locateOnScreen('./img/{}'.format(i), confidence = 0.9, region=(70, 160, 580, 320))
+            if img:
+                x,y = pag.center(img)
+                click_xy(x,y,0.8)
+                click_xy(947,714,0.8)  
+                press_sleep('num8',1)
     press_sleep('num7',1)
     press_sleep('num2',1.5)

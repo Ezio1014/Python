@@ -168,3 +168,61 @@ def AT():
     td.press_sleep("m",2.5)
     td.click_xy(1373,823,8)
     td.selfGoods()
+    
+#貿易路線3(黑市商品流程使用)(尚未完工)
+def runBM():
+    #的黎波里
+    td.search_port('的黎波里',21)
+    td.run_st(0)
+    
+    #錫拉庫薩
+    td.search_port('錫拉庫薩',21)
+    td.run_st(0)
+    
+    #那不勒斯
+    td.search_port('那不勒斯',21)
+    td.run_st(0)
+    
+    #馬賽
+    td.search_port('馬賽',21)
+    td.run_st(0)
+    
+    #瓦倫西亞
+    td.search_port('瓦倫西亞',25)
+    td.run_st(1)
+    
+    #阿爾及爾
+    td.search_port('阿爾及爾',21)
+    td.run_st(0)
+    
+    #馬拉加
+    td.search_port('馬拉加',21)
+    td.run_st(0)
+    
+    #塞維利亞
+    td.search_port('塞維利亞',25)
+    td.run_st(1)
+    
+    #波爾多
+    td.search_port('波爾多',21)
+    td.run_st(0)
+    
+    #南特
+    td.search_port('南特',21)
+    td.run_st(0)
+    
+    #倫敦
+    td.search_port('倫敦',25)
+    td.run_st(1)
+    
+    #阿姆斯特丹
+    td.search_port('阿姆斯特丹',21)
+    td.run_st(0)
+    
+    #漢堡
+    td.search_port('漢堡',21)
+    td.run_st(0)
+    
+    #返回的黎波里
+    td.search_port('的黎波里',4)
+    td.selfGoods()
