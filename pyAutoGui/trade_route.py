@@ -170,55 +170,26 @@ def AT():
     td.selfGoods()
     
 #貿易路線3(黑市商品流程使用)(尚未完工)
-def runBM(times):
+def runBM():
     time.sleep(2)
-    if times % 2 != 0:
-        #加來
-        td.search_port('加來',30)
-        td.run_st(0)
-        #阿爾及爾 30
-        td.search_port('阿爾及爾',48)
-        td.run_st(0)
-        #的黎波里 30
-        td.search_port('的黎波里',27)
-        td.run_st(0)
-        #錫拉庫薩 30
-        td.search_port('錫拉庫薩',18)
-        td.run_st(1)
-        #馬賽 30
-        td.search_port('馬賽',26)
-        td.run_st(0)
-        #薩薩里 30
-        td.search_port('薩薩里',17)
-        td.run_st(0)
-        #返回的黎波里
-        td.search_port('的黎波里',25)
-        td.selfGoods()
-    else:
-        #加來 30
-        td.search_port('加來',30)
-        td.run_st(0)
-        #波爾多 60
-        td.search_port('波爾多',25)
-        td.run_st(0)
-        #塞維利亞
-        td.search_port('塞維利亞',32)
-        td.run_st(1)        
-        #阿爾及爾 30
-        td.search_port('阿爾及爾',20)
-        td.run_st(0)
-        #的黎波里 30
-        td.search_port('的黎波里',27)
-        td.run_st(0)
-        #錫拉庫薩 30
-        td.search_port('錫拉庫薩',18)
-        td.run_st(1)
-        #馬賽 30
-        td.search_port('馬賽',26)
-        td.run_st(0)
-        #薩薩里 30
-        td.search_port('薩薩里',17)
-        td.run_st(0)
-        #返回的黎波里
-        td.search_port('的黎波里',25)
-        td.selfGoods()
+    #加來
+    td.search_port('加來',30)
+    td.run_st(0)
+    #阿爾及爾 30
+    td.search_port('阿爾及爾',48)
+    td.run_st(0)
+    #的黎波里 30
+    td.search_port('的黎波里',27)
+    td.run_st(0)
+    #錫拉庫薩 30
+    td.search_port('錫拉庫薩',18)
+    td.run_st(1)
+    #馬賽 30
+    td.search_port('馬賽',26)
+    td.run_st(0)
+    #薩薩里 30
+    td.search_port('薩薩里',17)
+    td.run_st(0)
+    #返回的黎波里
+    td.search_port('的黎波里',25)
+    td.selfGoods()
