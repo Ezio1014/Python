@@ -20,12 +20,13 @@ def click_xy(x,y,t):
 #購買指定商品 buy = [itemDict指定商品]
 def buyGood(buy):
     itemDict = {1:[238,217],2:[521,210],3:[246,357],4:[508,361], 5:[246,504],6:[542,504],7:[240,646],8:[527,646]}
-    press_sleep("t",2)
+    time.sleep(1)
+    press_sleep("t",1.5)
     g = 0
     for i in buy:
         click_xy(itemDict[i][0],itemDict[i][1],0.5)
         if g == 0:
-            press_sleep("num3",1)
+            press_sleep("num3",0.5)
         g = 1
         click_xy(1157,244,0.8)
     pag.press("num7")
@@ -33,7 +34,7 @@ def buyGood(buy):
 #交易介面
 def trading(x = None):
     time.sleep(1.5)
-    press_sleep("t",2)    
+    press_sleep("t",1.5)    
     if x == 1:
         press_sleep("num4",6)
     else:
@@ -48,14 +49,14 @@ def out_port():
 
 #導航介面
 def navigation(t):
-    time.sleep(2)
-    press_sleep("num3",2)
+    time.sleep(1.5)
+    press_sleep("num3",2.1)
     pag.press("space")
     time.sleep(t)
 
 #縮小地圖
 def zoomOutMap(t):
-    time.sleep(2.5)
+    time.sleep(2)
     for i in range(t):
         time.sleep(1.1)
         pag.press("num9")
@@ -73,16 +74,16 @@ def next_port(x,y,zoom = None):
 def search_port(p,t):
     click_xy(490,110,1)
     keyboard.write(p)
-    time.sleep(1)
+    time.sleep(0.7)
     click_xy(650,110,1)
-    click_xy(650,110,2)
+    click_xy(650,110,1.6)
     next_port(793,473)
     navigation(t)
 
 #出售貨物
 def selfGoods():
     time.sleep(1)
-    press_sleep("t",2)
+    press_sleep("t",1.5)
     press_sleep("space",1)
     press_sleep("num8",1)
     pag.press("num7")
@@ -100,10 +101,10 @@ def run_st(s,t = None):
     out_port()
     
 #跑商流程合併(推薦品)
-def run_trading(x,y,t,zoom = None):
+def run_trading(x,y,t,st,zoom = None):
     next_port(x,y,zoom)
     navigation(t)
-    run_st(0)
+    run_st(st)
 
 #跑商流程合併(指定商品)
 def run_tradingItems(x,y,t,buy,zoom = None):
@@ -121,12 +122,28 @@ def autoTrading():
     
 #貿易卷使用
 def tradebook():    
-    time.sleep(2.5)
-    press_sleep("t",2)
-    click_xy(1159,174,2)
-    click_xy(1159,289,2)
-    press_sleep("num7",2)
+    time.sleep(2)
+    press_sleep("t",1.5)
+    click_xy(1159,174,1.2)
+    click_xy(1159,289,1.2)
+    press_sleep("num7",1.5)
     
+#辨識+出售貿易商品 Point(x=735, y=210) Point(x=1420, y=675)
+def ImgAutoSold():
+    img_list = os.listdir("./Tradeimg") #遍歷資料夾內檔案
+    time.sleep(1)
+    press_sleep("t",1.5)
+    
+    for i in img_list:
+        img = pag.locateOnScreen('./Tradeimg/{}'.format(i), confidence = 0.9, region=(735, 210, 685, 465))
+        if img:
+            x,y = pag.center(img)
+            click_xy(x,y,0.7)
+    click_xy(1045,742,0.7)
+    click_xy(705,242,0.5)
+    click_xy(1267,185,0.7)
+    press_sleep("num7",1.2)
+            
 #辨識+購買黑市商人商品
 def black_market(p = None,t = None):
     img_list = os.listdir("./img") #遍歷資料夾內檔案
@@ -144,15 +161,15 @@ def black_market(p = None,t = None):
                                          , region=(goodItems[j][0], goodItems[j][1], 280, 95))
                 if img:
                     x,y = pag.center(img)
-                    click_xy(x,y,0.8)
-                    click_xy(947,714,0.8)  
+                    click_xy(x,y,0.7)
+                    click_xy(947,714,0.7)  
                     press_sleep('num8',1)
         else:
             img = pag.locateOnScreen('./img/{}'.format(i), confidence = 0.9, region=(70, 160, 580, 320))
             if img:
                 x,y = pag.center(img)
-                click_xy(x,y,0.8)
-                click_xy(947,714,0.8)  
+                click_xy(x,y,0.7)
+                click_xy(947,714,0.7)  
                 press_sleep('num8',1)
     press_sleep('num7',1)
     press_sleep('num2',1.5)
