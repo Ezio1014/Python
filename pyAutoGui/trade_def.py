@@ -20,7 +20,7 @@ def click_xy(x,y,t):
 #購買指定商品 buy = [itemDict指定商品]
 def buyGood(buy):
     itemDict = {1:[238,217],2:[521,210],3:[246,357],4:[508,361], 5:[246,504],6:[542,504],7:[240,646],8:[527,646]}
-    time.sleep(1)
+    time.sleep(0.9)
     press_sleep("t",1.5)
     g = 0
     for i in buy:
@@ -28,7 +28,7 @@ def buyGood(buy):
         if g == 0:
             press_sleep("num3",0.5)
         g = 1
-        click_xy(1157,244,0.8)
+        click_xy(1157,244,0.5)
     pag.press("num7")
 
 #交易介面
@@ -130,12 +130,12 @@ def tradebook():
     
 #辨識+出售貿易商品 Point(x=735, y=210) Point(x=1420, y=675)
 def ImgAutoSold():
-    img_list = os.listdir("./Tradeimg") #遍歷資料夾內檔案
+    img_list = os.listdir("./image/tradeImg") #遍歷資料夾內檔案
     time.sleep(1)
     press_sleep("t",1.5)
     
     for i in img_list:
-        img = pag.locateOnScreen('./Tradeimg/{}'.format(i), confidence = 0.9, region=(735, 210, 685, 465))
+        img = pag.locateOnScreen('./image/tradeImg/{}'.format(i), confidence = 0.9, region=(735, 210, 685, 465))
         if img:
             x,y = pag.center(img)
             click_xy(x,y,0.7)
@@ -173,3 +173,10 @@ def black_market(p = None,t = None):
                 press_sleep('num8',1)
     press_sleep('num7',1)
     press_sleep('num2',1.5)
+    
+#辨識驗證
+def verifyImg():
+    verify = False
+    img = pag.locateOnScreen('./image/verifyImg/verify01.png', confidence = 0.85, region=(740, 35, 100, 40))
+    verify = True if img else False
+    return verify

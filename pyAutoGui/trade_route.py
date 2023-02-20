@@ -32,11 +32,11 @@ def runSA_JP():
     td.search_port('長崎',55)
     td.run_st(0)
     
-    td.run_trading(1131,391,27,0)  #京都
-    td.run_trading(1005,75,38,0,1) #札幌
-    td.run_trading(306,457,24,0)   #符拉迪沃斯托克
-    td.run_trading(674,887,23,0,1) #釜山
-    td.run_trading(624,265,29,0)   #平壤
+    td.run_tradingItems(1131,391,26,[2,3,1])   #京都
+    td.run_trading(1005,75,36,0,1)             #札幌
+    td.run_trading(306,457,24,0)               #符拉迪沃斯托克
+    td.run_trading(674,887,23,0,1)             #釜山
+    td.run_tradingItems(624,265,28,[4,1,3,5])  #平壤
 
     #返回天津衛
     td.next_port(388,462)
@@ -48,18 +48,21 @@ def runAF_EU():
     #天津衛出發
     td.out_port()
     #應天府
-    td.run_tradingItems(896,889,32,[3,1,2,4,6])
+    td.run_tradingItems(896,889,32,[3,1,2,4])
     #廣州府
     td.search_port('廣州府',32)
     td.buyGood([1,5])
     td.out_port()
-    #汶萊
+    #汶萊(東南亞日本線殺價過不能再次執行，額外獨立寫)
     td.search_port('汶萊',32)
-    td.buyGood([4])
+    td.press_sleep("t",1.5)
+    td.click_xy(508,361,0.5)
+    td.click_xy(1157,244,0.5)
+    pag.press("num7")
     td.out_port()
     #莫三比克
-    td.search_port('莫三比克',20)
-    td.flag(76) #海盜旗使用    
+    td.search_port('莫三比克',22)
+    td.flag(74) #海盜旗使用    
     td.buyGood([3,5,8])
     td.out_port()
 
@@ -85,13 +88,14 @@ def runAF_EU():
     
     td.run_tradingItems(464,163,25,[4],1)     #聖多美
     td.run_tradingItems(820,229,20,[1])       #貝南
-    td.run_tradingItems(603,381,17,[2,6])     #聖喬治
+    td.run_tradingItems(603,381,18,[2,6])     #聖喬治
     td.run_tradingItems(74,425,34,[4])        #獅子山
     td.run_tradingItems(657,57,30,[7],2)      #阿爾金
     
     #錫拉庫薩(圖片辨識出售商品)
     td.search_port('錫拉庫薩',63)
     td.ImgAutoSold()
+    td.buyGood([6])
     td.out_port()
     #伊斯坦布爾
     td.search_port('伊斯坦布爾',32)
@@ -120,10 +124,14 @@ def runAF_EU():
     td.flag(17) #海盜旗使用
     td.run_st(1)
     #威尼斯
-    td.search_port('威尼斯',40)
-    td.run_st(0)
+    td.search_port('威尼斯', 40)
+    td.buyGood([7, 5])
+    td.out_port()
     #那不勒斯
-    td.run_trading(885,791,32,0)
+    td.next_port(885, 791)
+    td.navigation(32)
+    td.buyGood([8, 7, 2])
+    td.out_port()
     #馬拉加
     td.run_trading(54,659,31,0,1)
     #南特
@@ -159,7 +167,7 @@ def runAF_EU():
 #自動貿易(最後一港脫離卡死 time:760s)
 def AT():
     td.autoTrading()
-    time.sleep(738)
+    time.sleep(735)
     
     #避免該死的漂流瓶...
     td.click_xy(1077,217,1)
@@ -169,7 +177,7 @@ def AT():
     td.click_xy(1373,823,8)
     td.selfGoods()
     
-#貿易路線3(黑市商品流程使用)(尚未完工)
+#貿易路線3(黑市商品流程使用)
 def runBM():
     time.sleep(2)
     #加來
